@@ -1,0 +1,60 @@
+create database std_company
+use stD_company
+create table employee(id int identity (100,1),name varchar(50), email varchar(50), salary int ,city varchar(60))
+select*from employee;
+select*from student_choice
+insert into employee values
+('manish','man@gmail.com',10000 , 'meerut'),
+('creetey','kreet@gmail.com',19000 , 'meerut'),
+('kayra','kayra@gmail.com',18000 , 'meerut'),
+('subodh','sub@gmail.com',18000 , 'meerut'),
+('sakshi','sak@gmail.com',13000 , 'meerut')
+update employee set city='noida'
+where id=104 or id=106
+select*from employee 
+select city,name from employee where id = 104 or id =105
+create table student_choice(id int identity (100,1),name varchar(50), choice varchar (60),)
+select*from student_choice
+insert into student_choice values 
+('abhay','burger'),
+('harsh','chowmein'),
+('prince','dosa'),
+('gaurav','wine') ,
+('raghib','soda')
+select *from employee inner join student_choice on employee.id =student_choice.id
+select *from employee left join student_choice on employee.id =student_choice.id
+select *from employee right join student_choice on employee.id =student_choice.id
+create proc common
+as 
+begin
+select *from employee inner join student_choice on employee.id =student_choice.id
+end
+common
+create proc leftcommon
+as 
+begin
+select *from employee left join student_choice on employee.id =student_choice.id
+end
+leftcommon
+create proc rightcommon
+as 
+begin
+select *from employee right join student_choice on employee.id =student_choice.id
+end
+rightcommon
+create proc fulltable
+as 
+begin
+select *from employee full join student_choice on employee.id =student_choice.id
+end
+fulltable
+create proc INSERTDATA
+@id int,
+@name varchar(50),
+@email varchar(50),
+@salary int ,
+@city varchar(60)
+AS
+BEGIN
+insert into employee(id ,name, email, salary,city)values(@id,@name,@email,@salary,@city)
+end
